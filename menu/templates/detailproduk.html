@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+<table class="table table-striped table-hover text-center">
+    <thead style="font-family:Bernard MT Condensed;">
+        <tr>
+            <td>ID</td>
+            <td>Nama Produk</td>
+            <td>Kategori</td>
+            <td>Harga</td>
+            <td>Jumlah</td>
+        </tr>
+    </thead>
+    
+        
+    <tr>
+        <td>{{produk.id}}</td>
+        <td>{{produk.namaproduk}}</td>
+        <td>{{produk.Kategori}}</td>
+        <td>{{produk.harga}}</td>
+        <td>{{produk.jumlah}}</td>
+    </tr>  
+
+</table>
+{% endblock content %}

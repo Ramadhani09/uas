@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %} 
+      
+      {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.css'%}" />
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css'%}"/>
+  </head>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-primary">
+      <div class="container-fluid">
+        <img src="{% static 'img/loka.png' %}" alt="" style="height: 30px" />
+        <a class="navbar-brand" href="#" style="font-family: Bernard MT Condensed; margin-left: 10px">LocaCafe</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/home" style="font-family: Bernard MT Condensed">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produk" style="font-family: Bernard MT Condensed">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home" style="font-family: Bernard MT Condensed">Log-out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <body>
+    {% block content %} 
+    
+    {% endblock content %}
+  </body>
+  <script src="{% static 'bootstrap5/js/bootstrap.bundle.js' %}"></script>
+  <script src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+</html>

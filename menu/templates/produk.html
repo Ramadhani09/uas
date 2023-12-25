@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    
+{% block content %}
+{% comment %} <h1>{{judul}}</h1>
+<h1>{{subjudul}}</h1>
+<ol>
+    {% for data in kategori %}
+    <li>{{data.nama}}</li>   
+    {% endfor %}
+</ol> {% endcomment %}
+<div class="card-body" style="background-color: #e2edff;">
+<h3>Tambah Produk</h3>
+{% if submitted %}
+    Berhasil
+{% else %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="kirim">
+</form>
+{% endif %}
+
+<div class="row">
+    {% for data in data_produk %}
+    <div class="col-sm-3 mb-3 mb-sm-0">
+        <div class="card" style="width: 18rem; margin-top: 20px; margin-left: 10px;">
+            
+            {% if data.gmbr_produk %}
+            <img src="{{data.gmbr_produk.url}}" class="card-img-top">
+                
+            {% endif %}
+                
+            <div class="card-body">
+                <h5 class="card-title">{{data.namaproduk}}</h5>
+                <p class="card-text">{{data.harga}}</p>
+                <a href="produk/detailproduk/{{data.id}}" class="btn btn-primary">Beli</a>
+            </div>
+        </div>
+    </div>
+        
+    {% endfor %}
+        
+</div>
+    
+</div>
+{% endblock content %}
