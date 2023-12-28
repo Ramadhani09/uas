@@ -5,4 +5,5 @@ class FormProduk(forms.Form):
     kategori = forms.ModelChoiceField(queryset=Kategori.objects.all())
     namaproduk= forms.CharField()
     harga = forms.CharField( max_length=20)
+    gambar_produk =forms.ImageField()
     jumlah = forms.IntegerField()

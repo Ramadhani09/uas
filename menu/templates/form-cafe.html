@@ -4,21 +4,25 @@
     
 {% block content %}
 
-<div class="card-body" style="background-color: #e2edff;">
-<div class="text-center" style="font-family : Times New Roman;">
-<h3>Tambah Produk</h3>
-{% if submitted %}
-    Berhasil
-{% else %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="kirim">
-</form>
-{% endif %}
+<div class="card-body text-center" style="background-color: #e2edff;">
+    <div class ="row">
+        <hr class="my-3">
+        
+            <h3 style="font-family : Bernard MT Condensed;">Tambah Produk</h3>
+            {% if submitted %}
+                Berhasil
+            {% else %}
+            {% csrf_token %}
+            <form action="" method="POST" enctype="multipart/form-data">
+            
+            {{form.as_p}}
+            <input class="btn btn-primary" type="submit" value="kirim">
+            <a href="/produk" class="btn btn-primary">Kembali</a>
+            </form>
+            {% endif %}
+        
+        <hr class="my-3">
+    </div>
 </div>
 
-</div>
-    
-</div>
 {% endblock content %}

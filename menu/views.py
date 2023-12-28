@@ -4,29 +4,47 @@ from django.http import HttpResponseRedirect
 from django.template import loader
 from .models import Kategori, Produk
 from .form import FormProduk
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def home(request):
     home = loader.get_template('home.html')
     return HttpResponse(home.render())
 
-def produk(request):
+@csrf_exempt
+def form_cafe(request):
     submitted = False
     if request.method == "POST":
-        form = FormProduk(request.POST)
+        form = FormProduk(request.POST, request.FILES)
         if form.is_valid():
             simpandata = Produk.objects.create(
                 Kategori = form.cleaned_data.get("kategori"),
                 namaproduk = form.cleaned_data.get("namaproduk"),
                 harga = form.cleaned_data.get("harga"),
+                gmbr_produk =form.cleaned_data.get("gambar_produk"),
                 jumlah = form.cleaned_data.get("jumlah"),
             )
-        simpandata.save()
-        return HttpResponseRedirect("/produk?submitted=True")
+            simpandata.save()
+            return HttpResponseRedirect("/produk?submitted=True")
     else:
         form = FormProduk
         if "submitted" in request.GET:
             submitted = True
+
+    data = Kategori.objects.all()
+    data_produk = Produk.objects.all()
+    context = {
+        "kategori": data,
+        "data_produk": data_produk,
+        "form" : FormProduk,
+        "submitted" : submitted,
+    }
+    template = loader.get_template('form-cafe.html')
+    return HttpResponse(template.render(context, request))
+
+
+def produk(request):
 
     data = Kategori.objects.all()
     data_produk = Produk.objects.all()
@@ -36,7 +54,6 @@ def produk(request):
         "kategori": data,
         "data_produk": data_produk,
         "form" : FormProduk,
-        "submitted" : submitted,
     }
     produk = loader.get_template('produk.html')
     return HttpResponse(produk.render(context,request))
