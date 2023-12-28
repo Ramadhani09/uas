@@ -11,21 +11,14 @@
     {% endfor %}
 </ol> {% endcomment %}
 <div class="card-body" style="background-color: #e2edff;">
-<h3>Tambah Produk</h3>
-{% if submitted %}
-    Berhasil
-{% else %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="kirim">
-</form>
-{% endif %}
-
 <div class="row">
+    <div class="text-center" style="font-family : Times New Roman; margin-top: 10px;">
+        <a href="/form-cafe">Tambah Pesanan</a>
+<hr class="my-3">
+    </div>
     {% for data in data_produk %}
     <div class="col-sm-3 mb-3 mb-sm-0">
-        <div class="card" style="width: 18rem; margin-top: 20px; margin-left: 10px;">
+        <div class="card" style="width: 18rem; margin-top: 20px;">
             
             {% if data.gmbr_produk %}
             <img src="{{data.gmbr_produk.url}}" class="card-img-top">

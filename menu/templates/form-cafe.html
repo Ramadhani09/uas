@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    
+{% block content %}
+
+<div class="card-body" style="background-color: #e2edff;">
+<div class="text-center" style="font-family : Times New Roman;">
+<h3>Tambah Produk</h3>
+{% if submitted %}
+    Berhasil
+{% else %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="kirim">
+</form>
+{% endif %}
+</div>
+
+</div>
+    
+</div>
+{% endblock content %}
